@@ -134,13 +134,19 @@
     .model .desc { margin: 0; color: var(--ink); max-width: 30rem; }
     .model .desc .sub { display: block; margin-top: 0.6rem; color: var(--muted); font-size: 0.9rem; }
 
-    .specline {
-      font-family: var(--mono); font-size: 0.78rem;
-      font-variant-numeric: tabular-nums;
-      color: var(--muted);
-      margin: 1rem 0;
+    .stats {
+      display: flex; flex-wrap: wrap; gap: 0.6rem 2.25rem;
+      margin: 1.1rem 0 1.2rem;
     }
-    .specline .sep { color: var(--hairline); padding: 0 0.35rem; }
+    .stats dt {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .stats dd {
+      margin: 0;
+      font-family: var(--mono); font-size: 0.82rem;
+      font-variant-numeric: tabular-nums;
+    }
     .hf {
       font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
       border-bottom: 1px solid var(--accent);
@@ -186,6 +192,9 @@
     }
     .utility .desc { margin: 0 0 0.9rem; font-size: 0.88rem; }
     .utility .specline {
+      font-family: var(--mono); font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
       margin: 0 0 0.9rem;
       display: flex; flex-direction: column; gap: 0.2rem;
       align-items: flex-start;
@@ -258,7 +267,12 @@
             llama.cpp to Ollama.
             <span class="sub">Best for: chat, editing, style transfer.</span>
           </p>
-          <p class="specline"><span class="tip" tabindex="0" data-tip="3.4 B language model + 0.4 B vision encoder">4&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <dl class="stats">
+            <div><dt>Params</dt><dd><span class="tip" tabindex="0" data-tip="3.4 B language model + 0.4 B vision encoder">4&nbsp;B</span></dd></div>
+            <div><dt>Context</dt><dd>256&nbsp;K</dd></div>
+            <div><dt>Base</dt><dd>Ministral&nbsp;3</dd></div>
+            <div><dt>License</dt><dd>Apache&#8209;2.0</dd></div>
+          </dl>
           <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-3B">View on Hugging Face ↗</a>
         </div>
       </article>
@@ -274,7 +288,12 @@
             editing, tone adjustment, and style transfer. GGUF quantizations to fit a single consumer GPU.
             <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, summarization.</span>
           </p>
-          <p class="specline"><span class="tip" tabindex="0" data-tip="8.4 B language model + 0.4 B vision encoder">9&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <dl class="stats">
+            <div><dt>Params</dt><dd><span class="tip" tabindex="0" data-tip="8.4 B language model + 0.4 B vision encoder">9&nbsp;B</span></dd></div>
+            <div><dt>Context</dt><dd>256&nbsp;K</dd></div>
+            <div><dt>Base</dt><dd>Ministral&nbsp;3</dd></div>
+            <div><dt>License</dt><dd>Apache&#8209;2.0</dd></div>
+          </dl>
           <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-8B">View on Hugging Face ↗</a>
         </div>
       </article>
@@ -290,7 +309,12 @@
             smaller ones fall short.
             <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, analysis, summarization.</span>
           </p>
-          <p class="specline"><span class="tip" tabindex="0" data-tip="14.4 B language model + 0.4 B vision encoder">15&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <dl class="stats">
+            <div><dt>Params</dt><dd><span class="tip" tabindex="0" data-tip="14.4 B language model + 0.4 B vision encoder">15&nbsp;B</span></dd></div>
+            <div><dt>Context</dt><dd>256&nbsp;K</dd></div>
+            <div><dt>Base</dt><dd>Ministral&nbsp;3</dd></div>
+            <div><dt>License</dt><dd>Apache&#8209;2.0</dd></div>
+          </dl>
           <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-14B">View on Hugging Face ↗</a>
         </div>
       </article>
