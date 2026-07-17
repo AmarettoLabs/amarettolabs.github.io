@@ -200,6 +200,12 @@
       align-items: flex-start;
     }
     .utility .hf { font-size: 0.82rem; }
+    .soon { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+    .upcoming .desc, .upcoming .specline {
+      filter: blur(0.16em);
+      user-select: none;
+      pointer-events: none;
+    }
 
     /* ---------- footer ---------- */
     footer {
@@ -323,21 +329,21 @@
     <aside class="embeds" id="embeddings">
       <p class="eyebrow">Embeddings</p>
 
-      <article class="utility">
+      <article class="utility upcoming">
         <div class="head">
           <h2>amaretto&#8209;embed&#8209;148m</h2>
           <div class="chips"><span class="chip">embedding</span><span class="chip">gguf</span></div>
         </div>
-        <p class="desc">Compact embeddings for retrieval, RAG, and semantic
+        <p class="desc" aria-hidden="true">Compact embeddings for retrieval, RAG, and semantic
           search — EmbeddingGemma&#8209;300m with its vocabulary trimmed to the
           languages it serves. 2.5× less RAM at 99.5% of the original's
           retrieval quality. English, eight European languages, and code.</p>
-        <p class="specline">
-          <span><span class="tip" tabindex="0" data-tip="148 M encoder + 4.7 M dense head">148&nbsp;M</span> params</span>
-          <span><span class="tip" tabindex="0" data-tip="Matryoshka: truncates to 512 / 256 / 128">768</span> dims</span>
+        <p class="specline" aria-hidden="true">
+          <span><span class="tip" data-tip="148 M encoder + 4.7 M dense head">148&nbsp;M</span> params</span>
+          <span><span class="tip" data-tip="Matryoshka: truncates to 512 / 256 / 128">768</span> dims</span>
           <span>Gemma license</span>
         </p>
-        <a class="hf" href="https://huggingface.co/AmarettoLabs/amaretto-embed-148m">View on Hugging Face ↗</a>
+        <span class="soon">Coming soon</span>
       </article>
     </aside>
   </section>
