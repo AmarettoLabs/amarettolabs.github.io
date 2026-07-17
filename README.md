@@ -14,6 +14,12 @@ Small-batch open-weight language models, tuned for literary writing and sized fo
 
 All models ship with GGUF quantizations and run locally with llama.cpp, Ollama, and friends.
 
+## Embeddings
+
+| Model | Parameters | Dimensions | License | Weights |
+|-------|-----------|------------|---------|---------|
+| amaretto-embed-148m | 148 M | 768 (Matryoshka) | Gemma | [Hugging Face](https://huggingface.co/AmarettoLabs/amaretto-embed-148m) |
+
 ## Contact
 
 [hello@amarettolabs.com](mailto:hello@amarettolabs.com)

@@ -99,14 +99,21 @@
       text-transform: uppercase; color: var(--muted);
       margin: 0 0 0.5rem;
     }
-    section.models { border-top: 1px solid var(--hairline); padding: 3.5rem 0 1rem; }
+    section.models {
+      border-top: 1px solid var(--hairline);
+      padding: 3.5rem 0 1rem;
+      display: grid;
+      grid-template-columns: 1fr 16rem;
+      column-gap: 3.5rem;
+      align-items: start;
+    }
 
     /* ---------- model rows ---------- */
     .model {
       display: grid;
-      grid-template-columns: 15rem 1fr 13rem;
-      gap: 2.5rem;
-      padding: 2.75rem 0;
+      grid-template-columns: 11rem 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
       border-bottom: 1px solid var(--hairline);
     }
     .model:last-of-type { border-bottom: none; }
@@ -127,10 +134,13 @@
     .model .desc { margin: 0; color: var(--ink); max-width: 30rem; }
     .model .desc .sub { display: block; margin-top: 0.6rem; color: var(--muted); font-size: 0.9rem; }
 
-    .specs { font-family: var(--mono); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
-    .specs dl { margin: 0 0 1.1rem; display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 1rem; }
-    .specs dt { color: var(--muted); }
-    .specs dd { margin: 0; text-align: right; }
+    .specline {
+      font-family: var(--mono); font-size: 0.78rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
+      margin: 1rem 0;
+    }
+    .specline .sep { color: var(--hairline); padding: 0 0.35rem; }
     .hf {
       font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
       border-bottom: 1px solid var(--accent);
@@ -142,7 +152,7 @@
       content: attr(data-tip);
       position: absolute;
       bottom: calc(100% + 8px);
-      right: 0;
+      left: 0;
       background: var(--ink);
       color: var(--ground);
       font-family: var(--sans);
@@ -158,6 +168,30 @@
     }
     .tip:hover::after, .tip:focus-visible::after { opacity: 1; }
 
+    /* ---------- embeddings sidebar ---------- */
+    aside.embeds { padding-top: 0.1rem; }
+    .utility {
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      margin: 1.5rem 0;
+    }
+    .utility .head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .utility h2 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .utility .desc { margin: 0 0 0.9rem; font-size: 0.88rem; }
+    .utility .specline {
+      margin: 0 0 0.9rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+      align-items: flex-start;
+    }
+    .utility .hf { font-size: 0.82rem; }
+
     /* ---------- footer ---------- */
     footer {
       border-top: 1px solid var(--hairline);
@@ -170,8 +204,9 @@
     footer a:hover { color: var(--accent); border-color: var(--accent); }
 
     @media (max-width: 800px) {
+      section.models { grid-template-columns: 1fr; }
+      aside.embeds { border-top: 1px solid var(--hairline); margin-top: 1.5rem; padding-top: 2rem; }
       .model { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.25rem 0; }
-      .specs dd { text-align: left; }
       header.hero { padding: 4rem 0 3.5rem; }
     }
     @media (prefers-reduced-motion: no-preference) {
@@ -208,71 +243,79 @@
   </header>
 
   <section class="models" id="models">
-    <p class="eyebrow">The line</p>
+    <div class="line">
+      <p class="eyebrow">The line</p>
 
-    <article class="model">
-      <div>
-        <h2>Amaretto&#8209;3B</h2>
-        <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
-      </div>
-      <p class="desc">A model for literary writing and writing assistance, 
-        tone adjustment, editing, summarization and style
-        transfer. Runs on everyday hardware via GGUF quantizations, from
-        llama.cpp to Ollama.
-        <span class="sub">Best for: chat, editing, style transfer.</span>
-      </p>
-      <div class="specs">
-        <dl>
-          <dt>Parameters</dt><dd><span class="tip" tabindex="0" data-tip="3.4 B language model + 0.4 B vision encoder">4 B</span></dd>
-          <dt>Context</dt><dd>256 K</dd>
-          <dt>Base</dt><dd>Ministral&nbsp;3</dd>
-          <dt>License</dt><dd>Apache-2.0</dd>
-        </dl>
-        <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-3B">View on Hugging Face ↗</a>
-      </div>
-    </article>
+      <article class="model">
+        <div>
+          <h2>Amaretto&#8209;3B</h2>
+          <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
+        </div>
+        <div>
+          <p class="desc">A model for literary writing and writing assistance,
+            tone adjustment, editing, summarization and style
+            transfer. Runs on everyday hardware via GGUF quantizations, from
+            llama.cpp to Ollama.
+            <span class="sub">Best for: chat, editing, style transfer.</span>
+          </p>
+          <p class="specline"><span class="tip" tabindex="0" data-tip="3.4 B language model + 0.4 B vision encoder">4&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-3B">View on Hugging Face ↗</a>
+        </div>
+      </article>
 
-    <article class="model">
-      <div>
-        <h2>Amaretto&#8209;8B</h2>
-        <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
-      </div>
-      <p class="desc">The house standard. Literary prose with more depth:
-        scene writing, character voice, and emotional interiority, alongside
-        editing, tone adjustment, and style transfer. GGUF quantizations to fit a single consumer GPU.
-        <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, summarization.</span>
-      </p>
-      <div class="specs">
-        <dl>
-          <dt>Parameters</dt><dd><span class="tip" tabindex="0" data-tip="8.4 B language model + 0.4 B vision encoder">9 B</span></dd>
-          <dt>Context</dt><dd>256 K</dd>
-          <dt>Base</dt><dd>Ministral&nbsp;3</dd>
-          <dt>License</dt><dd>Apache-2.0</dd>
-        </dl>
-        <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-8B">View on Hugging Face ↗</a>
-      </div>
-    </article>
+      <article class="model">
+        <div>
+          <h2>Amaretto&#8209;8B</h2>
+          <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
+        </div>
+        <div>
+          <p class="desc">The house standard. Literary prose with more depth:
+            scene writing, character voice, and emotional interiority, alongside
+            editing, tone adjustment, and style transfer. GGUF quantizations to fit a single consumer GPU.
+            <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, summarization.</span>
+          </p>
+          <p class="specline"><span class="tip" tabindex="0" data-tip="8.4 B language model + 0.4 B vision encoder">9&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-8B">View on Hugging Face ↗</a>
+        </div>
+      </article>
 
-    <article class="model">
-      <div>
-        <h2>Amaretto&#8209;14B</h2>
-        <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
-      </div>
-      <p class="desc">The top of the line. The most capable model in
-        the line, built for creative-heavy work and long documents where the
-        smaller pours fall short.
-        <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, analysis, summarization.</span>
-      </p>
-      <div class="specs">
-        <dl>
-          <dt>Parameters</dt><dd><span class="tip" tabindex="0" data-tip="14.4 B language model + 0.4 B vision encoder">15 B</span></dd>
-          <dt>Context</dt><dd>256 K</dd>
-          <dt>Base</dt><dd>Ministral&nbsp;3</dd>
-          <dt>License</dt><dd>Apache-2.0</dd>
-        </dl>
-        <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-14B">View on Hugging Face ↗</a>
-      </div>
-    </article>
+      <article class="model">
+        <div>
+          <h2>Amaretto&#8209;14B</h2>
+          <div class="chips"><span class="chip">instruct</span><span class="chip">gguf</span></div>
+        </div>
+        <div>
+          <p class="desc">The top of the line. The most capable model in
+            the line, built for creative-heavy work and long documents where the
+            smaller ones fall short.
+            <span class="sub">Best for: chat, scene composition, character voice, style transfer, editing, analysis, summarization.</span>
+          </p>
+          <p class="specline"><span class="tip" tabindex="0" data-tip="14.4 B language model + 0.4 B vision encoder">15&nbsp;B</span> params<span class="sep">·</span>256&nbsp;K context<span class="sep">·</span>base Ministral&nbsp;3<span class="sep">·</span>Apache&#8209;2.0</p>
+          <a class="hf" href="https://huggingface.co/AmarettoLabs/Amaretto-14B">View on Hugging Face ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <aside class="embeds" id="embeddings">
+      <p class="eyebrow">Embeddings</p>
+
+      <article class="utility">
+        <div class="head">
+          <h2>amaretto&#8209;embed&#8209;148m</h2>
+          <div class="chips"><span class="chip">embedding</span><span class="chip">gguf</span></div>
+        </div>
+        <p class="desc">Compact embeddings for retrieval, RAG, and semantic
+          search — EmbeddingGemma&#8209;300m with its vocabulary trimmed to the
+          languages it serves. 2.5× less RAM at 99.5% of the original's
+          retrieval quality. English, eight European languages, and code.</p>
+        <p class="specline">
+          <span><span class="tip" tabindex="0" data-tip="148 M encoder + 4.7 M dense head">148&nbsp;M</span> params</span>
+          <span><span class="tip" tabindex="0" data-tip="Matryoshka: truncates to 512 / 256 / 128">768</span> dims</span>
+          <span>Gemma license</span>
+        </p>
+        <a class="hf" href="https://huggingface.co/AmarettoLabs/amaretto-embed-148m">View on Hugging Face ↗</a>
+      </article>
+    </aside>
   </section>
 
   <footer>
